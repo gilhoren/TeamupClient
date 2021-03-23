@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="currentUser">
   <a class="navbar-brand" href="#">
     <span>
-      <img height="30" width="30" src="assets/images/kid.png">
+      <img height="30" width="30" src="/assets/images/hands.PNG">
     </span>
-    OFARIM
+    PRODUCTEAMITY
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,7 @@
         <a class="nav-link" href="/admin" tabindex="-1" *ngIf="isAdmin">Admin</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" tabindex="-1" (click)="logout()">Logout</a>
+        <a class="nav-link" tabindex="-1" href="#" (click)="logout()">Logout</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -46,3 +46,5 @@
 </nav>
 
 <router-outlet></router-outlet>
+
+
