@@ -1,1 +1,92 @@
-<p>home works!</p>
+<div class="container my-container my-img">
+  <div id="sendFames" class="row">
+          <div class="col-12 "> <!-- align-self-center -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card bg-light my-card">
+                  <div class="card-body">
+                    <ul class="list-inline my-list">
+                        <li class="list-inline-item">
+                          <label class="my-label">find your faming buddy </label>
+                        </li>
+                      <li class="list-inline-item">
+                        <select class="form-control my-select" id="sel1">
+                          <option>select a buddy</option>
+                          <option>Gil Horen</option>
+                          <option>Ronen Horen</option>
+                          <option>Simcha Riger</option>
+                        </select>
+                      </li>
+                    </ul>
+                    <ul class="list-inline my-list">
+                      <li class="list-inline-item">
+                        <label class="my-label">find your faming skill </label>
+                      </li>
+                      <li class="list-inline-item">
+                        <select class="form-control my-select" id="sel1">
+                          <option>select a faming skill</option>
+                          <option>Judo</option>
+                          <option>CSS</option>
+                          <option>Netflix master</option>
+                        </select>
+                      </li>
+                    </ul>
+                    <ul class="list-inline my-list text-center">
+                      <button type="button" class="btn btn-outline-secondary my-btn">fame it like you like it</button>
+                    </ul>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+  </div>
+  <div id="viewFames" class="row" >
+    <div class="col-12 ">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card my-card2">
+            <div class="card-body">
+              <ul class="list-inline my-list text-center">
+                <li class="list-inline-item">
+                  <label class="my-label2">Recent famings </label>
+                </li>
+              </ul>
+              <ul class="list-inline my-list2">
+                <p-table [value]="famers" [scrollable]="true" scrollHeight="200px">
+<!--                  <ng-template pTemplate="colgroup" let-columns>-->
+<!--                    <colgroup>-->
+<!--                      <col style="width:20%">-->
+<!--                      <col style="width:20%">-->
+<!--                      <col style="width:30%">-->
+<!--                      <col style="width:30%">-->
+<!--                    </colgroup>-->
+<!--                  </ng-template>-->
+                  <ng-template pTemplate="header" >
+                    <tr>
+<!--                      <th style="width:20%">Name</th>-->
+<!--                      <th style="width:15%">Avatar</th>-->
+<!--                      <th style="width:20%">Fame</th>-->
+<!--                      <th style="width:20%">Date</th>-->
+                      <th >Name</th>
+                      <th >Avatar</th>
+                      <th >Fame</th>
+                      <th >Date</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-famer>
+                    <tr>
+                      <td class="my-bold-td">{{famer.name}}</td>
+                      <td><img [src]="'assets/images/avatars/' + famer.avatar" [alt]="famer.name" width="48" class="p-shadow-4" /></td>
+                      <td>{{famer.fame}}</td>
+                      <td>{{famer.date}}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

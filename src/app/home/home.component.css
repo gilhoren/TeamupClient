@@ -1,0 +1,88 @@
+.my-container
+{
+  margin-top: 2%;
+  min-height: 800px;
+}
+
+.my-card
+{
+  border-radius: 50px;
+  background-color: #919aa3;
+  margin-right: 45%;
+  margin-left: 10%;
+  margin-top: 15%;
+  min-height: 150px;
+}
+
+.my-card2
+{
+  border-radius: 50px;
+  background-color: rgba(49,51,54,0.79);
+  margin-right: 45%;
+  margin-left: 10%;
+  margin-top: 5%;
+  min-height: 350px;
+}
+
+
+
+.my-img
+{
+  border-radius: 50px;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-image: url("../../assets/images/thumbsup.jpg");
+
+}
+
+.my-select
+{
+  border-radius: 30px;
+}
+
+.my-list
+{
+  margin-left: 1%;
+}
+
+.my-list2
+{
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+.my-label
+{
+  color: rgba(107,112,117,0.62);
+  font-size: large;
+  font-weight: bold;
+}
+
+.my-label2
+{
+  color: rgba(190, 190, 203, 0.55);
+  font-size: large;
+  font-weight: bold;
+}
+
+.my-btn
+{
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.my-table
+{
+  /*max-height: 100px;*/
+  margin-right: 2%;
+  border-radius: 10px;
+
+}
+
+.my-bold-td
+{
+  font-weight: bold;
+}
+

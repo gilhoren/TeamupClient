@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {TableModule} from 'primeng/table';
 import {CalendarModule} from 'primeng/calendar';
+import {CardModule} from 'primeng/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -24,9 +25,10 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     AppRoutingModule,
     FormsModule,
     TableModule,
+    CardModule,
     CalendarModule,
     BrowserAnimationsModule,
-    
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
