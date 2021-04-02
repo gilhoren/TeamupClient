@@ -1,0 +1,84 @@
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <div class="container">
+    <div class="card login-card">
+      <div class="row no-gutters">
+        <div class="col-md-5">
+          <img src="assets/images/teamwork.jpg" alt="login" class="login-card-img">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <div class="brand-wrapper">
+              <img src="assets/images/logo_3.svg" alt="logo" class="logo">
+            </div>
+            <p class="login-card-description">Create an account</p>
+            <p class="login-card-footer-text">Already have an account? <a href="/login" class="login-card-register-link">Sign in</a></p>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="email" class="sr-only">Username</label>
+                <input type="email" formControlName="email" class="form-control" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors, 'is-valid': submitted && !f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.pattern">Email not valid</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="firstname" class="sr-only">Username</label>
+                <input type="text" formControlName="firstname" class="form-control" placeholder="First name" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors, 'is-valid': submitted && !f.firstname.errors }">
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstname.errors.required">First name is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="lastname" class="sr-only">Username</label>
+                <input type="text" formControlName="lastname" class="form-control" placeholder="Last name" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors, 'is-valid': submitted && !f.lastname.errors}">
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastname.errors.required">Last name is required</div>
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" formControlName="password" placeholder="**********" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors, 'is-valid': submitted && !f.password.errors }">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                  <div *ngIf="f.password.errors.pattern">
+                    <table>
+                      <tr>
+                        Password should contain:
+
+                      </tr>
+                      <br/>
+                      <tr>
+                        - At least 8 characters in length
+                      </tr>
+                      <tr>
+                        - Lowercase letters
+                      </tr>
+                      <tr>
+                        - Uppercase letters
+                      </tr>
+                      <tr>
+                        - Numbers
+                      </tr>
+                      <tr>
+                        - Special characters
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <button [disabled]="loading" class="btn btn-block login-btn mb-4">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Register
+              </button>
+              <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+            </form>
+            <nav class="login-card-footer-nav">
+              <a href="#!">Terms of use.</a>
+              <a href="#!">Privacy policy</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -7,6 +7,7 @@ import { AuthGuard } from './helpers/auth.guard';
 import { Role } from 'src/app/model/role';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
+import {RegisterComponent} from "./register/register.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'images', component: ImagesComponent, canActivate: [AuthGuard]},
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
   { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: 'home' }
 ];
