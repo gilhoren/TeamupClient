@@ -1,0 +1,40 @@
+<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <div class="container">
+    <div class="card login-card">
+      <div class="row no-gutters">
+        <div class="col-md-5">
+          <img src="assets/images/teamwork.jpg" alt="login" class="login-card-img">
+        </div>
+        <div class="col-md-7">
+          <div class="card-body">
+            <div class="brand-wrapper">
+              <img src="assets/images/logo_3.svg"  alt="logo" class="logo">
+            </div>
+            <p class="login-card-description">Verify your identity</p>
+            <p class="login-card-footer-text">Enter the code we just sent to</p>
+            <p class="login-card-footer-text-bold">gil.horen@gmail.com</p>
+
+            <code-input [isCodeHidden]="false"
+                        [codeLength]="6"
+                        [isCharsCode]="false"
+                        (codeChanged)="onCodeChanged($event)"
+                        (codeCompleted)="onCodeCompleted($event)">
+            </code-input>
+            <br/>
+            <p style="text-align: right">
+              <a [routerLink]="['/register']" class="card-nav-buttons">Back</a>
+              <a (click)="resendCode()" class="card-nav-buttons">Resend Code</a>
+            </p>
+            <br/>
+            <nav class="login-card-footer-nav">
+              <a href="#!">Terms of use.</a>
+              <a href="#!">Privacy policy</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+

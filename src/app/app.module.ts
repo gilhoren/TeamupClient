@@ -13,12 +13,15 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { fakeBackendProvider } from './helpers/fake-backend';
 import { RegisterComponent } from './register/register.component';
+import { VerifyIdentityComponent } from './verify-identity/verify-identity.component';
+import { CodeInputModule } from 'angular-code-input';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    RegisterComponent
+    RegisterComponent,
+    VerifyIdentityComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { RegisterComponent } from './register/register.component';
     CardModule,
     CalendarModule,
     BrowserAnimationsModule,
+    CodeInputModule,
 
   ],
   providers: [

@@ -8,6 +8,7 @@ import { Role } from 'src/app/model/role';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import {RegisterComponent} from "./register/register.component";
+import {VerifyIdentityComponent} from "./verify-identity/verify-identity.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'verify', component: VerifyIdentityComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: 'home' }
 ];
