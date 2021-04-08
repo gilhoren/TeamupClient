@@ -14,10 +14,10 @@
             <p class="login-card-footer-text">New user? <a href="/register" class="login-card-register-link">Create an account</a></p>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label for="username" class="sr-only">Username</label>
-                <input type="text" formControlName="username" class="form-control" placeholder="User name" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                  <div *ngIf="f.username.errors.required">Username is required</div>
+                <label for="email" class="sr-only">Email</label>
+                <input type="text" formControlName="email" class="form-control" placeholder="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
                 </div>
               </div>
               <div class="form-group mb-4">

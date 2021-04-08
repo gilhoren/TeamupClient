@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import {EmailAndPassword} from "../model/EmailAndPassword";
 
-@Component({ 
+@Component({
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.css'] })
 export class LoginComponent implements OnInit {
@@ -20,16 +21,16 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService
-    ) { 
+    ) {
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
     }
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
+            email: ['', Validators.required],
             password: ['', Validators.required]
         });
 
@@ -49,7 +50,10 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        var emailAndPassword = new EmailAndPassword();
+        emailAndPassword.email = this.f.email.value;
+        emailAndPassword.password = this.f.password.value;
+        this.authenticationService.login(emailAndPassword)
             .pipe(first())
             .subscribe(
                 data => {

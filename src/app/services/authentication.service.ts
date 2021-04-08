@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { User } from '../model/user';
+import {EmailAndPassword} from "../model/EmailAndPassword";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -20,14 +21,18 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
+    login(emailAndPassword: EmailAndPassword) {
+        return this.http.post<any>(`${environment.backendBaseUrl}/user/v1/authenticate`, emailAndPassword)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user.id > 0) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
+                } else {
+                  var err = "User was not found or password does not match";
+                  console.log(err);
+                  throw new Error(err);
                 }
 
                 return user;

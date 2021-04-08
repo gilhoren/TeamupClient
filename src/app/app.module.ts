@@ -9,9 +9,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JwtInterceptor } from './helpers/jwt.interceptor';
+//import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
-import { fakeBackendProvider } from './helpers/fake-backend';
+//import { fakeBackendProvider } from './helpers/fake-backend';
 import { RegisterComponent } from './register/register.component';
 import { VerifyIdentityComponent } from './verify-identity/verify-identity.component';
 import { CodeInputModule } from 'angular-code-input';
@@ -37,11 +37,11 @@ import { CodeInputModule } from 'angular-code-input';
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider
+    //fakeBackendProvider
 ],
   bootstrap: [AppComponent]
 })

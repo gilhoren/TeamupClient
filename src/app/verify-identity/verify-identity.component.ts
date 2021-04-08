@@ -12,13 +12,15 @@ import {Observable} from "rxjs";
 })
 export class VerifyIdentityComponent implements OnInit {
 
+  email: string;
+
   constructor(private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
               private dataService: DataService) { }
 
   ngOnInit(): void {
-
+    this.email = this.route.snapshot.paramMap.get('email');
   }
 
   onCodeChanged(code: string) {

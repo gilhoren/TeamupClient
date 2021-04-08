@@ -12,13 +12,12 @@ export class UserService {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
-    getById(id: number) {
+    getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }
 
     registerUser(userData) {
       let response = this.http.post<string>(`${environment.backendBaseUrl}/user/v1/add`, userData);
-      response.subscribe(val => console.log(val));
       return response;
     }
 
@@ -29,7 +28,6 @@ export class UserService {
       params = params.append('id', userId);
 
       let response = this.http.get(`${environment.backendBaseUrl}/user/v1/regitrationConfirm`, {params: params});
-      response.subscribe(val => console.log(val));
       return response;
     }
 }

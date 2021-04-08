@@ -55,10 +55,16 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.userService.registerUser(this.userData).pipe(first()).subscribe(user => {
+
+    this.userService.registerUser(this.userData).subscribe(userResponse => {
       this.loading = false;
-      this.router.navigate(["verify", { userid: user }]);
-    });
+      this.router.navigate(["verify", { userid: userResponse, email: this.userData.email }]);
+    },
+      (error) => {
+        console.error('error caught in component');
+        this.error = "Could not register user. Validate if email already exists.";
+        this.loading = false;
+      });
 
   }
 }
