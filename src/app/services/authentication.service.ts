@@ -1,11 +1,12 @@
-﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+﻿import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
-import { User } from '../model/user';
+import {environment} from '../../environments/environment';
+import {User} from '../model/user';
 import {EmailAndPassword} from "../model/EmailAndPassword";
+import {Role} from "../model/role";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -22,10 +23,11 @@ export class AuthenticationService {
     }
 
     login(emailAndPassword: EmailAndPassword) {
-        return this.http.post<any>(`${environment.backendBaseUrl}/user/v1/authenticate`, emailAndPassword)
+        return this.http.post<User>(`${environment.backendBaseUrl}/user/v1/authenticate`, emailAndPassword)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user.id > 0) {
+                    user.role = user.admin == true ? Role.Admin : Role.User;
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
