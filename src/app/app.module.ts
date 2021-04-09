@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 //import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 //import { fakeBackendProvider } from './helpers/fake-backend';
+import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './register/register.component';
 import { VerifyIdentityComponent } from './verify-identity/verify-identity.component';
 import { CodeInputModule } from 'angular-code-input';
@@ -34,7 +35,11 @@ import { CodeInputModule } from 'angular-code-input';
     CalendarModule,
     BrowserAnimationsModule,
     CodeInputModule,
-
+    ToastrModule.forRoot({
+      timeOut: 3500,
+      extendedTimeOut: 0,
+      positionClass: 'toast-center-center'
+    })
   ],
   providers: [
     //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

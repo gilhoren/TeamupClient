@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
-import {filter, first, map} from "rxjs/operators";
-import {ActivatedRoute, NavigationStart, Router} from "@angular/router";
-import {DataService} from "../services/data.service";
-import {Observable} from "rxjs";
+import {first} from "rxjs/operators";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-verify-identity',
@@ -14,10 +13,11 @@ export class VerifyIdentityComponent implements OnInit {
 
   email: string;
 
+
   constructor(private userService: UserService,
               private router: Router,
               private route: ActivatedRoute,
-              private dataService: DataService) { }
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.email = this.route.snapshot.paramMap.get('email');
@@ -28,18 +28,23 @@ export class VerifyIdentityComponent implements OnInit {
 
   // this called only if user entered full code
   onCodeCompleted(code: string) {
-    // TODO: verify code
-    // TODO: on error - display invalid message
-    // TODO: on success - display success and
-    // TODO: route to login page
-    // TODO: send an email with successful registration
     if (code.length < 6) {
       return;
     }
     let userid = this.route.snapshot.paramMap.get('userid');
-    this.userService.validateRegistration(code, userid).pipe(first()).subscribe(user => {
-    });
-    this.router.navigate(["login"]);
+    this.userService.validateRegistration(code, userid).pipe(first()).subscribe(result => {
+      if (result == true) {
+        this.toastr.show("Account activated successfully!");
+        this.router.navigate(["login"]);
+      }
+      else {
+        this.toastr.error("Could not activate account. Please retry.", "Account Activation Error");
+      }
+    },
+      (error) => {
+        this.toastr.error("Could not activate account. Please retry.", "Account Activation Error");
+      });
+
   }
 
   resendCode() {
