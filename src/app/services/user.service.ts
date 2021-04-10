@@ -1,9 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
-
 import { environment } from '../../environments/environment';
 import { User } from '../model/user';
-import {catchError} from "rxjs/operators";
 import {Observable, throwError} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
@@ -50,6 +48,15 @@ export class UserService {
       params = params.append('id', userId);
 
       let response = this.http.get(`${environment.backendBaseUrl}/user/v1/regitrationConfirm`, {params: params});
+      return response;
+    }
+
+    resendCode(email: string, userId: string) {
+      let params = new HttpParams();
+      params = params.append('email', email);
+      params = params.append('id', userId);
+
+      let response = this.http.get(`${environment.backendBaseUrl}/user/v1/resendCode`, {params: params});
       return response;
     }
 }

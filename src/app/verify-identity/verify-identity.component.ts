@@ -12,7 +12,7 @@ import {ToastrService} from "ngx-toastr";
 export class VerifyIdentityComponent implements OnInit {
 
   email: string;
-
+  userID: string;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -21,6 +21,7 @@ export class VerifyIdentityComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = this.route.snapshot.paramMap.get('email');
+    this.userID = this.route.snapshot.paramMap.get('userid');
   }
 
   onCodeChanged(code: string) {
@@ -31,23 +32,38 @@ export class VerifyIdentityComponent implements OnInit {
     if (code.length < 6) {
       return;
     }
-    let userid = this.route.snapshot.paramMap.get('userid');
-    this.userService.validateRegistration(code, userid).pipe(first()).subscribe(result => {
+
+    let errMsg = "Could not activate account. Please retry.";
+    let errTitle = "Account Activation Error";
+
+    this.userService.validateRegistration(code, this.userID).pipe(first()).subscribe(result => {
       if (result == true) {
         this.toastr.show("Account activated successfully!");
         this.router.navigate(["login"]);
       }
       else {
-        this.toastr.error("Could not activate account. Please retry.", "Account Activation Error");
+        this.toastr.error(errMsg, errTitle);
       }
     },
       (error) => {
-        this.toastr.error("Could not activate account. Please retry.", "Account Activation Error");
+        this.toastr.error(errMsg, errTitle);
       });
 
   }
 
   resendCode() {
-    alert("Verification code was resent to gil.horen@gmail.com");
+    let errMsg = "Could not send activation code to: " + this.email + " Please verify your email and retry.";
+    let errTitle = "Activation token send error";
+    this.userService.resendCode(this.email, this.userID).pipe(first()).subscribe(result => {
+        if (result == true) {
+          this.toastr.show("Activation code was sent to: " + this.email);
+        }
+        else {
+          this.toastr.error(errMsg, errTitle);
+        }
+      },
+      (error) => {
+        this.toastr.error(errMsg, errTitle);
+      });
   }
 }
